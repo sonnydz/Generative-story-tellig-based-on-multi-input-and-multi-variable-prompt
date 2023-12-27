@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAZA NOW</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<script>
+    // JavaScript functions for handling icon clicks
+    function handleCameraClick() {
+        // Replace this with your logic for generating a story
+        const generatedStory = generateStoryBasedOnPrompt("A beautiful sunny day...");
+
+        // Update the story content in the HTML
+        document.getElementById('storyContent').innerText = generatedStory;
+
+        // Show the story container
+        document.getElementById('storyContainer').style.display = 'block';
+    }
+
+    function handleMicClick() {
+        try {
+            const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+            recognition.lang = 'en-US';
+
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript.toLowerCase();
+                document.querySelector('.icon-input').value = transcript;
+            };
+
+            recognition.onerror = function(event) {
+                console.error('Speech recognition error:', event.error);
+            };
+
+            recognition.start();
+        } catch (error) {
+            console.error('Speech recognition is not supported in this browser.');
+        }
+    }
+
+    async function handleSendClick() {
+        const inputText = document.querySelector('.icon-input').value;
+
+        const response = await fetch('http://localhost:5000/generate_story', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                input_text: inputText
+            }),
+        });
+
+        const data = await response.json();
+
+        // Update the generated story content in the HTML
+        document.getElementById('storyContent').innerText = data.generated_story;
+
+        // Show the story container
+        document.getElementById('storyContainer').style.display = 'block';
+    }
+</script>
+
+<body>
+    <div class="main">
+        <nav class="nav-bar">
+            <div class="menu-tab">
+                <img src="{{ url_for('static', filename='menu.png') }}" alt=""> <span>GAZA </span>
+                <spann>Under </spann>
+                <spannn>Attack </spannn>
+            </div>
+            <a href="sign">
+                <img src="{{ url_for('static', filename='avatar.png') }}" alt="profile" width="120px" height="120px">
+            </a>
+        </nav>
+
+        <div class="right-section">
+            <div class="body">
+                <div class="result">
+                    <div class="container" id="storyContainer">
+                        <h2 class="title">
+                            Generated Story
+                        </h2>
+                        <p id="storyContent">
+                            Title: "The Lily's Legacy" In a village torn by conflict, there lived a man named Amir. He cherished his daughter, Lila, a beacon of joy in their war-torn world. One tragic day, Lila's laughter was silenced by the cruelty of war. Amir, heartbroken, faced
+                            a choice: succumb to hate or sow seeds of compassion. Amir chose the latter. He shared Lila's story, urging enemies to see the shared pain that bound them. His plea softened hearts, sparking a fragile hope for peace. Amidst
+                            the ruins, a lily bloomed—a symbol of Amir's enduring love and the possibility of healing through compassion.
+                        </p>
+
+                        <vid>
+                            <p>Real-time Facial Expression Analysis</p>
+                            <img src="{{ url_for('video_feed') }}" width="240" height="180" style="border:1px solid #000;">
+                        </vid>
+                    </div>
+                </div>
+            </div>
+            <div class="question">
+                <input type="text" placeholder="Enter a prompt here" class="icon-input">
+                <a href="#" onclick="handleCameraClick()"><img src="{{ url_for('static', filename='camera.png') }}" alt="Camera Icon"></a>
+                <a href="#" onclick="handleMicClick()"><img src="{{ url_for('static', filename='mic.png') }}" alt="Mic Icon"></a>
+                <a href="#" onclick="handleSendClick()"><img src="{{ url_for('static', filename='send icon.png') }}" alt="Send Icon"></a>
+                <input type="file" id="fileInput" style="display: none">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
