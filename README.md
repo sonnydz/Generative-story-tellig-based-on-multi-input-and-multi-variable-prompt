@@ -38,3 +38,9 @@ Join the Conversation:
 Share your MiniGPT creations and ideas.
 
 Let's write the world together.
+![figma3](https://github.com/sonnydz/Generative-story-tellig-based-on-multi-input-and-multi-variable-prompt/assets/94638007/2c053619-1a07-42b8-aaf6-e6a8c79ec5f2)
+![figma2](https://github.com/sonnydz/Generative-story-tellig-based-on-multi-input-and-multi-variable-prompt/assets/94638007/87ae9b9c-8201-4d36-a32a-107810414f37)
+![figma1](https://github.com/sonnydz/Generative-story-tellig-based-on-multi-input-and-multi-variable-prompt/assets/94638007/a868731b-1eba-434a-b784-a0ad9e875931)
+<img width="960" alt="spline1" src="https://github.com/sonnydz/Generative-story-tellig-based-on-multi-input-and-multi-variable-prompt/assets/94638007/4796b765-48f2-4aa5-b706-d1ff30b59259">
+<img width="959" alt="spline2" src="https://github.com/sonnydz/Generative-story-tellig-based-on-multi-input-and-multi-variable-prompt/assets/94638007/436860f5-8e94-4283-bd92-eb4b7cc26629">
+
